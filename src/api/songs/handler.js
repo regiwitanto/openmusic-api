@@ -5,6 +5,7 @@ class SongsHandler {
 
     this.postSongHandler = this.postSongHandler.bind(this);
     this.getSongsHandler = this.getSongsHandler.bind(this);
+    this.getSongByIdHandler = this.getSongByIdHandler.bind(this);
   }
 
   async postSongHandler(request, h) {
@@ -37,6 +38,17 @@ class SongsHandler {
       status: 'success',
       data: {
         songs,
+      },
+    };
+  }
+
+  async getSongByIdHandler(request) {
+    const { id } = request.params;
+    const song = await this._service.getSongById(id);
+    return {
+      status: 'success',
+      data: {
+        song,
       },
     };
   }
