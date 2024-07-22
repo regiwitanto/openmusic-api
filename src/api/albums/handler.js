@@ -31,20 +31,20 @@ class AlbumsHandler {
   async getAlbumByIdHandler(request, h) {
     const { id } = request.params;
     const album = await this._service.getAlbumById(id);
-    return {
+    const response = h.response({
       status: 'success',
       data: {
         album,
       },
-    };
+    });
+    response.code(200);
+    return response;
   }
 
   async putAlbumByIdHandler(request, h) {
     this._validator.validateAlbumPayload(request.payload);
     const { id } = request.params;
-
     await this._service.editAlbumById(id, request.payload);
-
     return {
       status: 'success',
       message: 'Album berhasil diperbarui',

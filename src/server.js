@@ -34,7 +34,7 @@ const init = async () => {
         validator: SongsValidator,
         service: new SongsService(),
       },
-    }
+    },
   ]);
 
   server.ext('onPreResponse', (request, h) => {
