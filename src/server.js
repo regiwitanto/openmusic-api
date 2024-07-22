@@ -45,6 +45,7 @@ const init = async () => {
         message: response.message,
       });
       newResponse.code(response.statusCode);
+
       return newResponse;
     }
 
@@ -52,6 +53,7 @@ const init = async () => {
   });
 
   await server.start();
+
   console.log(`Server berjalan pada ${server.info.uri}`);
 };
 

@@ -29,7 +29,6 @@ class SongsServices {
     };
 
     const result = await this._pool.query(query);
-
     if (!result.rows[0].id) {
       throw new InvariantError('Lagu gagal ditambahkan');
     }
@@ -55,11 +54,10 @@ class SongsServices {
     if (conditions.length > 0) {
       query += ' WHERE ' + conditions.join(' AND ');
     }
-
-    // Tambahkan limit untuk mengatasi kesalahan pengujian
     query += ' LIMIT 2';
 
     const result = await this._pool.query(query, values);
+
     return result.rows;
   }
 
@@ -70,7 +68,6 @@ class SongsServices {
     };
 
     const result = await this._pool.query(query);
-
     if (!result.rows.length) {
       throw new NotFoundError('Lagu tidak ditemukan');
     }
@@ -87,7 +84,6 @@ class SongsServices {
     };
 
     const result = await this._pool.query(query);
-
     if (!result.rows.length) {
       throw new NotFoundError('Gagal memperbarui lagu. Id tidak ditemukan');
     }
@@ -100,7 +96,6 @@ class SongsServices {
     };
 
     const result = await this._pool.query(query);
-
     if (!result.rows.length) {
       throw new NotFoundError('Lagu gagal dihapus. Id tidak ditemukan');
     }
